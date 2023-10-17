@@ -1,11 +1,10 @@
-//node server that will handle socket connection
 const io = require('socket.io')(5000);
 
 const users = {};
 
 io.on('connection', socket =>
 {
-socket.on('new-user-joined', name =>{//event name and listener
+socket.on('new-user-joined', name =>{
 users[socket.id] = name;
 console.log("new user joind: ", name);
 socket.broadcast.emit('user-joined', name);
